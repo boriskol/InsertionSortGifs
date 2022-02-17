@@ -59,12 +59,10 @@ class ViewModel: ObservableObject {
    }
    
    public func sortArrayA(){
-      let g:[GifCollectionViewCellViewModel] = insertionSort(gifs, <) //{$0.title < $0.title}
-      self.gifs = g
+     self.gifs = insertionSort(gifs, <) //{$0.title < $0.title}
    }
    public func sortArrayD(){
-      let g:[GifCollectionViewCellViewModel] = insertionSort(self.gifs, >)
-      self.gifs = g
+      self.gifs = insertionSort(self.gifs, >)
    }
    
    @MainActor func loadGift() async {
