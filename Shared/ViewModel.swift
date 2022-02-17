@@ -68,7 +68,6 @@ class ViewModel: ObservableObject {
    }
    
    @MainActor func loadGift() async {
-      
       Task(priority: .userInitiated, operation: {
          let fp: APIListResponse? = try? await appiCall?.fetchAPI(urlParams: [Constants.rating: Constants.rating, Constants.limit: Constants.limitNum], gifacces: Constants.trending)
          let d = fp?.data.map({ return GifCollectionViewCellViewModel(id: $0.id!, title: $0.title!, rating: $0.rating, Image: $0.images?.fixed_height?.url, url: $0.url)
