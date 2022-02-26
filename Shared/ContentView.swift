@@ -16,36 +16,23 @@ struct ContentView: View {
                // MARK: Inserstion Sort
                HStack(alignment: .center, spacing: 8, content: {
                   HStack(){
-                     //Spacer()
-                     Button(action: {
-                        self.gifs.sortArrayA()
-                     }) {
-                        HStack {
-                           Text("ascending")
-                        }.padding(10.0)
+                     Button(action: {self.gifs.sortArrayA()}) {
+                        HStack {Text("ascending")}.padding(10.0)
                            .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0))
                      }.padding(.leading)
                   }
                   Spacer()
                   HStack(){
-                     //Spacer()
-                     Button(action: {
-                        self.gifs.sortArrayD()
-                     }) {
-                        HStack {
-                           //Image(systemName: "minus")
-                           Text("descending")
-                        }.padding(10.0)
+                     Button(action: {self.gifs.sortArrayD()}) {
+                        HStack {Text("descending")}.padding(10.0)
                            .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0))
                      }.padding(.trailing,10)
                   }
                })
                
-               
                // MARK: Gifs
                Section(header: VStack(alignment: .leading, spacing: 8){
-                  Text("Gifs Trading").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading).onAppear{
-                  }
+                  Text("Gifs Trading").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
                }, content: {
                   List{
                      ForEach(self.gifs.gifs, id: \.id) { gif in

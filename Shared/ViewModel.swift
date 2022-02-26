@@ -26,10 +26,10 @@ import Foundation
       var currentIndex = index
       let temp = sortedArray[currentIndex]
       while y > 0 && isOrderedBefore() {
-         sortedArray[currentIndex] = sortedArray[currentIndex - 1]                // 1
+         sortedArray[currentIndex] = sortedArray[currentIndex - 1]
          currentIndex -= 1
       }
-      sortedArray[currentIndex] = temp                      // 2
+      sortedArray[currentIndex] = temp
    }
       return sortedArray
  }
@@ -46,7 +46,7 @@ class ViewModel: ObservableObject {
    
    func insertionSort<T>(_ array: [T], _ isOrderedBefore: (T, T) -> Bool) -> [T] {
       var a = array
-      for x in 1..<a.count {
+      for x in 1..<array.count {
          var y = x
          let temp = a[y]
          while y > 0 && isOrderedBefore(temp, a[y - 1]) {
@@ -79,3 +79,5 @@ class ViewModel: ObservableObject {
       debugPrint("ViewModel deinit")
    }
 }
+
+

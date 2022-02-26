@@ -28,7 +28,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
    }
    
    var body: some View {
-      
+      //if let cached = ItemCache.shared.getItem(for: url){
       if let cached = ImageCache[url] {
          content(.success(cached))
       } else {
@@ -55,13 +55,36 @@ struct CacheAsyncImage<Content>: View where Content: View {
 // TODO:  Fix this withNSCach
 fileprivate class ImageCache {
    static private var cache: [URL: Image] = [:]
+   //static private var imageCache = NSCache<NSURL, Image>()
    
    static subscript(url: URL) -> Image? {
       get {
          ImageCache.cache[url]
+         //ImageCache.imageCache = NSCache<url, Image>
       }
       set {
          ImageCache.cache[url] = newValue
+         //ImageCache.imageCache[url as NSURL] = newValue
+         
       }
    }
+}
+
+class StructWrapper<T>: NSObject {
+    let value: T
+    init(_ _struct: T) {
+        value = _struct
+    }
+}
+class ItemCache: NSCache<NSString, StructWrapper<Image>> {
+    static let shared = ItemCache()
+
+    func cache(_ item: Image, for key: URL) {
+        let itemWrapper = StructWrapper(item)
+       self.setObject(itemWrapper, forKey: key.absoluteString as NSString )
+    }
+    func getItem(for key: URL) -> Image? {
+       let itemWrapper = self.object(forKey: key.absoluteString as NSString)
+        return itemWrapper?.value
+    }
 }
